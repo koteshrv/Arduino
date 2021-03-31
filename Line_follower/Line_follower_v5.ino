@@ -3,7 +3,7 @@
 #define led 13
 #define buzzer 9
 #define threshold 900
-#define STOP_COUNT 2
+#define STOP_COUNT 6
 #define STOP_TIME 5000
 
 #define NOTE_B0  31
@@ -402,15 +402,16 @@ void loop()
         analogWrite(pwm[1], 0);
         digitalWrite(led, LOW);
         Serial.print("Stoping for ");
-        Serial.print(STOP_TIME);
+        Serial.print("12");
         Serial.print(" seconds\n");
-        delay(STOP_TIME);
+        //delay(STOP_TIME);
+        stop_sound();
+        stop_sound();
         digitalWrite(dir[0], LOW); 
         analogWrite(pwm[0], 80);
         digitalWrite(dir[1], LOW); 
         analogWrite(pwm[1], 80);
         delay(1000);
-        stop_sound();
       }
       else {
         digitalWrite(dir[0], LOW); 
@@ -425,9 +426,9 @@ void loop()
 
     else if(IR_status(statusSensor) == 1) {
       digitalWrite(dir[0], LOW); 
-      analogWrite(pwm[0], 100);
+      analogWrite(pwm[0], 85);
       digitalWrite(dir[1], LOW); 
-      analogWrite(pwm[1], 100);
+      analogWrite(pwm[1], 85 );
       digitalWrite(led, HIGH);
       Serial.print("Moving Forward\n");
     }
@@ -460,7 +461,7 @@ void loop()
       analogWrite(pwm[1], 60);
       digitalWrite(led, LOW);
       Serial.print("Invalid path\n");
-      error_sound();
+      //error_sound();
     }
         
   }
